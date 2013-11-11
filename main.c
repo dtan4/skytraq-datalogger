@@ -249,19 +249,19 @@ int main(int argc, char *argv[])  {
             printf("Uploading AGPS data to GPS device...\n");
 
             /* switch to higher baud rate */
-            unsigned old_baud_rate = baud_rate;
-            baud_rate = 115200;
-            if ( baud_rate != old_baud_rate ) {
-                skytraq_set_serial_speed(fd,skytraq_mkspeed( baud_rate ),0);
-            }
+            /* unsigned old_baud_rate = baud_rate;
+             * baud_rate = 115200;
+             * if ( baud_rate != old_baud_rate ) {
+             *     skytraq_set_serial_speed(fd,skytraq_mkspeed( baud_rate ),0);
+             * } */
 
             skytraq_send_agps_data( fd, &data );
             free(data.memory);
 
             /* restore old baud rate */
-            if ( baud_rate != old_baud_rate ) {
-                skytraq_set_serial_speed(fd,skytraq_mkspeed( old_baud_rate ),0);
-            }
+            /* if ( baud_rate != old_baud_rate ) {
+             *     skytraq_set_serial_speed(fd,skytraq_mkspeed( old_baud_rate ),0);
+             * } */
         } else {
             fprintf(stderr, "Download failed.\n");
             return RETURN_ERROR_AGPS_DOWNLOAD_FAILED;
